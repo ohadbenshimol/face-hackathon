@@ -8,15 +8,12 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <Link to="/upload">upload</Link>
-        <Link to="/login">login</Link>
         <Switch>
-          <Route exact path="/"></Route>
-          <Route exact path="/login">
-            <LoginForm />
-          </Route>
           <Route exact path="/upload">
             <UploadForm />
+          </Route>
+          <Route path="*">
+            <LoginForm />
           </Route>
         </Switch>
       </Router>

@@ -18,8 +18,8 @@ import { firebaseConfig } from "./firebase";
 import { getStorage, ref, uploadBytes } from "firebase/storage";
 import { Link } from "react-router-dom";
 
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+export const app = initializeApp(firebaseConfig);
+export const db = getFirestore(app);
 
 enum PageState {
   INITIAL,
