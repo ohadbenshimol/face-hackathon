@@ -10,7 +10,7 @@ const ParticlesComp = () => {
           autoPlay: true,
           background: {
             color: {
-              value: "#96bcdd",
+              value: "#fafafa",
             },
             image: "",
             position: "50% 50%",
@@ -189,7 +189,7 @@ const ParticlesComp = () => {
               },
             },
             color: {
-              value: "#fff",
+              value: "#3d9cd7",
               animation: {
                 h: {
                   count: 0,

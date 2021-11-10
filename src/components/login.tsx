@@ -74,7 +74,7 @@ const LoginForm = () => {
     <>
       <Grid
         textAlign="center"
-        style={{ height: "100vh" }}
+        style={{ height: "85vh" }}
         verticalAlign="middle"
       >
         <Grid.Column style={{ maxWidth: 450 }}>
@@ -120,7 +120,12 @@ const LoginForm = () => {
                 </div>
 
                 <hr />
-                <Button color="linkedin" fluid size="large">
+                <Button
+                  color="linkedin"
+                  className="button-color"
+                  fluid
+                  size="large"
+                >
                   הרשמה
                 </Button>
               </Segment>

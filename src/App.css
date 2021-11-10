@@ -51,3 +51,7 @@
 button {
   font-size: calc(10px + 2vmin);
 }
+
+.button-color {
+  background-color: #3d9cd7 !important;
+}
