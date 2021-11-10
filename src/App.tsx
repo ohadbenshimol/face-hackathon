@@ -11,11 +11,11 @@ function App() {
         <Link to="/upload">upload</Link>
         <Link to="/login">login</Link>
         <Switch>
-          <Route path="/"></Route>
-          <Route path="/login">
+          <Route exact path="/"></Route>
+          <Route exact path="/login">
             <LoginForm />
           </Route>
-          <Route path="/upload">
+          <Route exact path="/upload">
             <UploadForm />
           </Route>
         </Switch>
