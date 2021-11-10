@@ -11,7 +11,7 @@ import {
   Message,
   Segment,
 } from "semantic-ui-react";
-import { firebaseConfig } from "./firebase";
+import { firebaseConfig, storage } from "./firebase";
 import WordCloud from "react-d3-cloud";
 import { getStorage, ref, uploadBytes } from "firebase/storage";
 
@@ -36,19 +36,20 @@ const LoginForm = () => {
     if (!name || !email || !image) alert("ERROR");
 
     //Add a new document in collection "cities"
-    // const storage = getStorage();
-    // const storageRef = ref(storage);
+    const storage2 = getStorage();
+    storage.ref(`/images/${image.name}`).put(image);
+    //const storageRef = ref(storage);
 
     // // 'file' comes from the Blob or File API
     // uploadBytes(storageRef, image).then((snapshot) => {
     //   console.log("Uploaded a blob or file!");
     // });
 
-    // await setDoc(doc(db, "users", name), {
-    //   name,
-    //   email,
-    //   image,
-    // });
+    await setDoc(doc(db, "users", name), {
+      name,
+      email,
+      image,
+    });
   };
 
   useEffect(() => {
