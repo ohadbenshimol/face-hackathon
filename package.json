@@ -2,12 +2,15 @@
   "name": "face-hackathon",
   "version": "0.0.0",
   "scripts": {
-    "dev": "vite",
+    "start": "vite",
     "build": "tsc && vite build",
     "serve": "vite preview"
   },
   "dependencies": {
+    "@firebase/app": "^0.7.7",
+    "firebase": "^9.4.0",
     "react": "^17.0.0",
+    "react-d3-cloud": "^1.0.5",
     "react-dom": "^17.0.0",
     "react-dropzone": "^11.4.2",
     "react-router": "^6.0.2",
