@@ -30,9 +30,10 @@ const LoginForm = () => {
   const [usersList, setYsersList] = useState(data);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    const name = event.target.name.value;
-    const email = event.target.email.value;
-    const image = event.target.img.files[0];
+    const target : any = event.target;
+    const name = target.name.value;
+    const email = target.email.value;
+    const image = target.img.files[0];
     if (!name || !email || !image) alert("ERROR");
 
     //Add a new document in collection "cities"
