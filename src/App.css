@@ -2,6 +2,17 @@
   text-align: center;
 }
 
+::-webkit-input-placeholder {
+  text-align: right;
+}
+
+.App * {
+  z-index: 77;
+}
+
+.header {
+  font-family: "Assistant", sans-serif !important;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;

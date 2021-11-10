@@ -72,7 +72,7 @@ const UploadForm = () => {
               </Message>
 
               <Button
-                color="teal"
+                color="linkedin"
                 fluid
                 onClick={uploadFiles}
                 enabled={hasFiles}

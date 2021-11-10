@@ -1,7 +1,7 @@
 import { initializeApp } from "@firebase/app";
 import { addDoc, collection, setDoc } from "@firebase/firestore";
 import { doc, getDocs, getFirestore } from "firebase/firestore";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   Button,
   Dimmer,
@@ -30,6 +30,12 @@ enum PageState {
 
 const LoginForm = () => {
   const [pageState, setPageState] = useState(PageState.INITIAL);
+  const imgR = useRef(null);
+
+  useEffect(() => {
+    console.log(imgR);
+    // imgR&&imgR.current.innerText = "as";
+  }, [imgR]);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     try {
@@ -72,9 +78,10 @@ const LoginForm = () => {
         verticalAlign="middle"
       >
         <Grid.Column style={{ maxWidth: 450 }}>
-          <Header as="h2" color="teal" textAlign="center">
+          <Header as="h2" color="black" textAlign="center" className="header">
             ברוכים הבאים לאירוע: האקתון גוגל
           </Header>
+
           {(pageState == PageState.LOADING ||
             pageState == PageState.INITIAL) && (
             <Form size="large" onSubmit={handleSubmit}>
@@ -86,25 +93,24 @@ const LoginForm = () => {
                 )}
                 <Form.Input
                   fluid
-                  iconPosition="left"
                   icon="user"
                   id="name"
-                  placeholder="Name"
+                  placeholder="שם"
                   required
                 />
                 <Form.Input
                   fluid
                   icon="mail"
                   id="email"
-                  iconPosition="left"
-                  placeholder="email"
+                  placeholder="מייל"
                   type="email"
                   required
                 />
 
-                <div className="ui fluid left icon input">
+                <div className="ui fluid icon input">
                   <input
-                    placeholder="selfie"
+                    ref={imgR}
+                    placeholder="סלפי"
                     type="file"
                     id="img"
                     capture
@@ -114,7 +120,7 @@ const LoginForm = () => {
                 </div>
 
                 <hr />
-                <Button color="teal" fluid size="large">
+                <Button color="linkedin" fluid size="large">
                   הרשמה
                 </Button>
               </Segment>
