@@ -1,5 +1,5 @@
 import { initializeApp } from "@firebase/app";
-import { collection, setDoc } from "@firebase/firestore";
+import { addDoc, collection, setDoc } from "@firebase/firestore";
 import { doc, getDocs, getFirestore } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import {
@@ -30,42 +30,28 @@ const LoginForm = () => {
   const [usersList, setYsersList] = useState(data);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    const target : any = event.target;
+    const target: any = event.target;
     const name = target.name.value;
     const email = target.email.value;
     const image = target.img.files[0];
     if (!name || !email || !image) alert("ERROR");
+    const imageType = image.name.split(".")[1];
+
+    const citiesCol = collection(db, "users");
+    const doc = await addDoc(citiesCol, {
+      name,
+      email,
+      imageType,
+    });
 
     //Add a new document in collection "cities"
     const storage = getStorage(app, "gs://modular-visitor-331708.appspot.com");
-    const storageRef = ref(storage, `/selfies/${image.name}`);
+    const storageRef = ref(storage, `/selfies/${doc.id}.${imageType}`);
 
     // 'file' comes from the Blob or File API
     const uploadResult = await uploadBytes(storageRef, image);
 
     console.log(uploadResult.metadata.md5Hash);
-  };
-
-  useEffect(() => {
-    async function fetchMyAPI() {
-      const citiesCol = collection(db, "users");
-      const citySnapshot = await getDocs(citiesCol);
-      const cityList = citySnapshot.docs.map((doc: any) => doc.data());
-      const a = cityList.map((user: any) => {
-        return { text: user.name, value: 1000 };
-      });
-      setYsersList(a);
-
-      return cityList;
-    }
-
-    fetchMyAPI();
-  }, []);
-
-  const getImage = async () => {
-    const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-
-    setMediaStream(stream);
   };
 
   return (
