@@ -29,7 +29,7 @@ const LoginForm = () => {
   ];
   const [usersList, setYsersList] = useState(data);
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: any) => {
     const name = event.target.name.value;
     const email = event.target.email.value;
     const image = event.target.img.files[0];
