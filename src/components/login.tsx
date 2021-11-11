@@ -33,6 +33,7 @@ enum PageState {
 const LoginForm = () => {
   const [pageState, setPageState] = useState(PageState.PAGE1);
   const [details, setDetails] = useState<any>();
+  const [file, setFile] = useState<File>();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     if (pageState == PageState.PAGE1) {
@@ -74,6 +75,10 @@ const LoginForm = () => {
     }
   };
 
+  const fileUploadHandler = (ev: React.ChangeEvent<HTMLInputElement>) => {
+    setFile(ev?.target?.files?.[0]);
+  };
+
   return (
     <>
       <Grid
@@ -81,7 +86,7 @@ const LoginForm = () => {
         style={{ height: "85vh" }}
         verticalAlign="middle"
       >
-        <Grid.Column style={{ maxWidth: 450 }}>
+        <Grid.Column style={{ maxWidth: "min(450px, 95vw)" }}>
           <Header as="h2" color="black" textAlign="center" className="header">
             ברוכים הבאים לאירוע: האקתון גוגל
           </Header>
@@ -121,7 +126,9 @@ const LoginForm = () => {
                           src={a}
                         />
                       </label>
+                      <label>{file?.name}</label>
                       <input
+                        onChange={fileUploadHandler}
                         hidden
                         placeholder="סלפי"
                         type="file"
@@ -169,6 +176,7 @@ const LoginForm = () => {
                     color="linkedin"
                     className="button-color"
                     size="tiny"
+                    disabled={!Boolean(file)}
                   >
                     הרשמה
                   </Button>

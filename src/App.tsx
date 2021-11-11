@@ -12,7 +12,7 @@ function App() {
     <>
       <ParticlesComp />
       <div className="App">
-        <Image src={logo} size="large" wrapped style={{ height: "15vh" }} />
+        <Image src={logo} size="medium" wrapped style={{ height: "10vh" }} />
         <Router>
           <Switch>
             <Route exact path="/upload">

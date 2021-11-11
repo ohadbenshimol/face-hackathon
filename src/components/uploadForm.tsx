@@ -55,7 +55,7 @@ const UploadForm = () => {
 
   return (
     <Grid textAlign="center" style={{ height: "85vh" }} verticalAlign="middle">
-      <Grid.Column style={{ maxWidth: 450 }}>
+      <Grid.Column style={{ maxWidth: "min(450px, 95vw)" }}>
         {(pageState == PageState.LOADING || pageState == PageState.INITIAL) && (
           <>
             <Segment className="container">
