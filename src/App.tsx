@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import UploadForm from "./components/uploadForm";
 import ParticlesComp from "./components/particles";
 import { Image } from "semantic-ui-react";
-import logo from "./logo.svg";
+import logo from "./logo.png";
 
 function App() {
   return (

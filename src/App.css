@@ -10,6 +10,10 @@
   z-index: 77;
 }
 
+.ui input {
+  direction: rtl !important;
+  text-align: right !important;
+}
 .header {
   font-family: "Assistant", sans-serif !important;
 }
@@ -54,4 +58,8 @@ button {
 
 .button-color {
   background-color: #3d9cd7 !important;
+}
+
+.button-color i {
+  margin: auto;
 }
