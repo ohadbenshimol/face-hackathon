@@ -1,15 +1,32 @@
 import { getStorage, ref, uploadBytes } from "firebase/storage";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import {
   Button,
   Dimmer,
   Grid,
+  Icon,
   Loader,
   Message,
   Segment,
 } from "semantic-ui-react";
 import { app } from "./login";
+
+const dropzoneStyle = {
+  flex: 1,
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  padding: "20px",
+  borderWidth: 2,
+  borderRadius: 2,
+  borderColor: "#eeeeee",
+  borderStyle: "dashed",
+  backgroundColor: "#fafafa",
+  color: "#bdbdbd",
+  outline: "none",
+  transition: "border .24s ease-in-out",
+};
 
 enum PageState {
   INITIAL,
@@ -20,16 +37,32 @@ enum PageState {
 
 const UploadForm = () => {
   const [pageState, setPageState] = useState(PageState.INITIAL);
+  const [fileList, setFileList] = useState<File[]>([]);
   const { acceptedFiles, getRootProps, getInputProps } = useDropzone({
     accept: "image/jpeg, image/png",
   });
 
-  const hasFiles = Boolean(acceptedFiles.length);
-  const files = acceptedFiles.map((file: any) => (
-    <li key={file.name}>
+  useEffect(() => {
+    setFileList([...acceptedFiles, ...fileList]);
+  }, [acceptedFiles]);
+
+  const removeFile = (index: number) => {
+    setFileList(fileList.filter((_, i) => i !== index));
+  };
+
+  const files = fileList.map((file: File, index) => (
+    <div
+      key={file.name + index}
+      style={{ display: "flex", justifyContent: "space-between" }}
+      className="file-list-item"
+    >
+      <a onClick={() => removeFile(index)}>
+        <Icon name="x" color="black" />
+      </a>{" "}
       {file.name} - {file.size} bytes
-    </li>
+    </div>
   ));
+  const hasFiles = Boolean(files.length);
 
   const uploadFiles = async () => {
     try {
@@ -64,26 +97,29 @@ const UploadForm = () => {
                   <Loader />
                 </Dimmer>
               )}
-              <Message>
-                <div {...getRootProps({ className: "dropzone" })}>
-                  <input {...getInputProps()} />
-                  <p>גררו תמונות לכאן או לחצו לבחירה</p>
-                </div>
-              </Message>
 
+              <div {...getRootProps({ style: dropzoneStyle as any })}>
+                <input {...getInputProps()} />
+                <p>גרור תמונות לכאן או לחץ לבחירה</p>
+              </div>
+
+              {Boolean(files.length) && (
+                <Message>
+                  <Message.Header>קבצים</Message.Header>
+                  {files}
+                  {!hasFiles && "עוד לא הועלו קבצים"}
+                </Message>
+              )}
+              <br />
               <Button
                 color="linkedin"
                 fluid
                 onClick={uploadFiles}
-                enabled={hasFiles}
+                disabled={!hasFiles}
               >
                 אישור
               </Button>
-              <Message>
-                <Message.Header>קבצים</Message.Header>
-                <ul>{files}</ul>
-                {!hasFiles && "עוד לא הועלו קבצים"}
-              </Message>
+              {/*  */}
             </Segment>
           </>
         )}

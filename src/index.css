@@ -12,3 +12,14 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.file-list-item {
+  transition: all 200ms ease;
+  background-color: #fff0;
+  filter: brightness(1);
+}
+
+.file-list-item:hover {
+  background-color: #fff4;
+  filter: brightness(2);
+}

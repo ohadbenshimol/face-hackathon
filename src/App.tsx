@@ -10,9 +10,13 @@ import logo from "./logo.png";
 function App() {
   return (
     <>
-      <ParticlesComp />
+      {/* <ParticlesComp /> */}
       <div className="App">
-        <Image src={logo} size="medium" wrapped style={{ height: "10vh" }} />
+        <Image
+          src={logo}
+          wrapped
+          style={{ height: "10vh", width: 200, paddingTop: "2vh" }}
+        />
         <Router>
           <Switch>
             <Route exact path="/upload">

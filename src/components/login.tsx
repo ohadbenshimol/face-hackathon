@@ -113,20 +113,22 @@ const LoginForm = () => {
                       width: "100%",
                     }}
                   >
-                    <label>להעלאת תמונה לחצו</label>
-                    <div className="ui">
+                    <label>הוסף את תמונת הפנים שלך למאגר</label>
+                    <div className="ui" style={{ height: "6em" }}>
                       <label htmlFor="img">
                         <img
                           style={{
-                            height: "5em",
+                            height: "3.5em",
                             margin: "auto",
                             width: "auto",
+                            cursor: "pointer",
+                            marginTop: "1em",
                           }}
                           className="ui medium image"
                           src={a}
                         />
                       </label>
-                      <label>{file?.name}</label>
+                      <label style={{ fontSize: "1rem" }}>{file?.name}</label>
                       <input
                         onChange={fileUploadHandler}
                         hidden
@@ -186,7 +188,9 @@ const LoginForm = () => {
           )}
           {pageState == PageState.DONE && (
             <Message>
-              <Message.Header>נרשמת בהצלחה!</Message.Header>
+              <Message.Header style={{ direction: "rtl" }}>
+                נרשמת בהצלחה!
+              </Message.Header>
               התמונות שלך יעברו אליך בסוף האירוע, למעבר להעלאת תמונות לחצו{" "}
               <Link to="upload">כאן</Link>
             </Message>
